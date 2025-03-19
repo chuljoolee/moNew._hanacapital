@@ -1,0 +1,1 @@
+import{I as o}from"./IllustObject-8120db5f.js";import{_ as e}from"./index-9e106429.js";import{A as s,J as c,q as r}from"./vue-c1e56059.js";import"./vendor-58bdd0ff.js";import"./chart-387708a7.js";const p={components:{IllustObject:o}};function n(a,l,m,_,i,f){const t=c("IllustObject");return r(),s(t,{type:"capital"})}const j=e(p,[["render",n]]);export{j as default};
