@@ -10,6 +10,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # GitHub Pages 배포를 위해 권한 추가
 
     steps:
       - name: Checkout source code
@@ -29,6 +31,9 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Verify Build Output
+        run: ls -la dist/app # 빌드 결과 확인용
+
       # 404.html 파일 생성 (GitHub Pages SPA 지원용)
       - name: Create 404.html
         run: cp dist/app/index.html dist/app/404.html
@@ -37,7 +42,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # yarn build
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/app
-          # 커스텀 도메인이 있는 경우 아래 줄의 주석을 제거하고 설정
+          # 커스텀 도메인 사용 시 아래 설정 추가
           # cname: your-custom-domain.com
